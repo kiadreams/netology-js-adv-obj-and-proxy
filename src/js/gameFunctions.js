@@ -11,6 +11,12 @@ export function orderByProps(character, sortArr) {
   return resArr;
 }
 
-export function getSpecialData({id, name, description = 'Описание недоступно', icon}) {
-  return [id, name, description, icon];
+
+export function getSpecialData({special}) {
+  const resArr = [];
+  special.forEach(skill => {
+    const {id, name, description = 'Описание недоступно', icon} = skill
+    resArr.push({id: id, name: name, description: description, icon: icon});
+  });
+  return resArr;
 }

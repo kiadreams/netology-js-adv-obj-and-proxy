@@ -15,17 +15,31 @@ test('Testing orderByProps function', () => {
 });
 
 
-test.each([
-  [
-    'with a description field',
-    {id: 8, name: 'Двойной выстрел', icon: 'http://...', description: 'Двойной выстрел наносит двойной урон'},
-    [8, 'Двойной выстрел', 'Двойной выстрел наносит двойной урон', 'http://...'],
-  ],
-  [
-    'without a description field',
-    {id: 9, name: 'Нокаутирующий удар', icon: 'http://...'},
-    [9, 'Нокаутирующий удар', 'Описание недоступно', 'http://...'],
+test('Testing getSpecialData function', () => {
+  const character = {
+    name: 'Лучник',
+    type: 'Bowman',
+    health: 50,
+    level: 3,
+    attack: 40,
+    defence: 10,
+    special: [
+      {
+        id: 8,
+        name: 'Двойной выстрел',
+        icon: 'http://...',
+        description: 'Двойной выстрел наносит двойной урон'
+      },
+      {
+        id: 9,
+        name: 'Нокаутирующий удар',
+        icon: 'http://...'
+      }
+    ]
+  }
+  const resArr = [
+    {id: 8, name: 'Двойной выстрел', description: 'Двойной выстрел наносит двойной урон', icon: 'http://...'},
+    {id: 9, name: 'Нокаутирующий удар', description: 'Описание недоступно', icon: 'http://...'},
   ]
-])('Testing getSpecialData function: %s', (nameTest, inputObj, expectResult) => {
-  expect(getSpecialData(inputObj)).toEqual(expectResult);
+  expect(getSpecialData(character)).toEqual(resArr);
 });
